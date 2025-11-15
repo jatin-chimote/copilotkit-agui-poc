@@ -2,6 +2,37 @@
 
 A full-stack AI-powered application for intelligent schema mapping using CopilotKit and LangGraph.
 
+## 🚀 Run Without Local Installation!
+
+**No need to install Python, Node.js, or anything on your machine!**
+
+Choose any cloud option:
+
+| Platform | Setup Time | Cost | Best For |
+|----------|------------|------|----------|
+| [**GitHub Codespaces**](#github-codespaces) | 3 min | Free (60h/mo) | ⭐ Recommended - Development |
+| [**Gitpod**](#gitpod) | 2 min | Free (50h/mo) | Quick Testing |
+| [**Railway**](#railway) | 5 min | Free tier | Production Deploy |
+| [**Render**](#render) | 10 min | 100% Free | Free Hosting |
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed cloud deployment instructions.
+
+### Quick Start (Cloud)
+
+#### GitHub Codespaces
+1. Click the **Code** button on GitHub
+2. Select **Codespaces** → **Create codespace**
+3. Wait 2-3 minutes for auto-setup
+4. Open port 3000 in browser
+5. Done! ✅
+
+#### Gitpod
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/YOUR_USERNAME/copilotkit-agui-poc)
+
+Click the button above and start coding in the cloud!
+
+---
+
 ## Overview
 
 This application helps organizations consolidate data from multiple vendors by intelligently mapping varying source schemas to a standardized destination schema. It uses LangGraph agents to provide AI-powered column mapping suggestions through an interactive chat interface.
@@ -49,12 +80,24 @@ This application helps organizations consolidate data from multiple vendors by i
 
 ## Getting Started
 
-### Prerequisites
+### Cloud Deployment (No Installation Needed!)
+
+**Recommended:** Use [GitHub Codespaces](./DEPLOYMENT.md#option-1-github-codespaces-recommended---100-cloud) or [Gitpod](./DEPLOYMENT.md#option-2-gitpod-one-click-cloud-ide) to run without any local setup.
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for all cloud options.
+
+---
+
+### Local Installation (Optional)
+
+Only follow these steps if you want to run locally instead of using cloud options above.
+
+#### Prerequisites
 - Python 3.10+
 - Node.js 18+
 - OpenAI API key
 
-### Backend Setup
+#### Backend Setup
 
 1. Navigate to backend directory:
 ```bash

@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: data-mapper-backend
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: DATABASE_URL
+        value: sqlite:///./data_mapper.db
+    autoDeploy: true
+
+  - type: web
+    name: data-mapper-frontend
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: "npm install && npm run build"
+    startCommand: "npm run preview -- --host --port $PORT"
+    autoDeploy: true
