@@ -2,8 +2,6 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine, Base
 from app.routers import projects, agent
-from copilotkit import CopilotKitSDK
-from app.copilotkit_integration import get_copilot_actions
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
@@ -23,15 +21,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Initialize CopilotKit
-copilot_sdk = CopilotKitSDK(
-    actions=get_copilot_actions()
-)
-
 # Include routers
 app.include_router(projects.router)
 app.include_router(agent.router)
-app.include_router(copilot_sdk.router, prefix="/copilotkit")
 
 @app.get("/")
 def read_root():
