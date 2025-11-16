@@ -1,0 +1,50 @@
+[
+  {
+    "client_number": "VB-2001",
+    "contact_first": "Jennifer",
+    "contact_last": "Brown",
+    "email_primary": "j.brown@innovatetech.com",
+    "telephone": "555-2001",
+    "organization_name": "InnovateTech Corp",
+    "business_type": "Software",
+    "full_address": "888 Innovation Dr, Seattle, WA 98109, USA",
+    "registration_date": "2024-09-12",
+    "account_tier": "premium",
+    "total_purchases": 156000.25,
+    "max_credit": 80000.00,
+    "primary_contact": true,
+    "marketing_opt_in": true
+  },
+  {
+    "client_number": "VB-2002",
+    "contact_first": "Daniel",
+    "contact_last": "Lee",
+    "email_primary": "daniel.lee@buildco.com",
+    "telephone": "555-2002",
+    "organization_name": "BuildCo Industries",
+    "business_type": "Construction",
+    "full_address": "1500 Builder Ave, Phoenix, AZ 85001, USA",
+    "registration_date": "2024-05-20",
+    "account_tier": "standard",
+    "total_purchases": 92500.00,
+    "max_credit": 50000.00,
+    "primary_contact": true,
+    "marketing_opt_in": false
+  },
+  {
+    "client_number": "VB-2003",
+    "contact_first": "Lisa",
+    "contact_last": "Wang",
+    "email_primary": "l.wang@retailplus.com",
+    "telephone": "555-2003",
+    "organization_name": "RetailPlus Group",
+    "business_type": "E-commerce",
+    "full_address": "2200 Commerce Blvd, Miami, FL 33101, USA",
+    "registration_date": "2024-11-05",
+    "account_tier": "gold",
+    "total_purchases": 275000.50,
+    "max_credit": 150000.00,
+    "primary_contact": true,
+    "marketing_opt_in": true
+  }
+]

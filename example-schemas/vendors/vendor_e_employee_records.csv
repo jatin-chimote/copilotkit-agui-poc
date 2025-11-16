@@ -1,0 +1,8 @@
+StaffID,GivenName,FamilyName,WorkEmail,MobilePhone,Division,Position,StartDate,EmploymentStatus,AnnualSalary,BonusEligible,ReportsTo,WorkLocation,Nation,WorkMode,BenefitsPlan,PerformanceScore,LastReviewedOn,YearsOfService,CertificationLevel
+VE-2001,Christopher,Taylor,c.taylor@company.com,555-3001,Technology,Lead Software Architect,2018-05-10,FULL_TIME,145000.00,YES,VE-3001,San Jose,USA,REMOTE,PLATINUM,4.7,2024-12-18,6.5,senior
+VE-2002,Amanda,Rodriguez,a.rodriguez@company.com,555-3002,Revenue,Senior Sales Director,2019-08-22,FULL_TIME,135000.00,YES,VE-3002,Los Angeles,USA,HYBRID,GOLD,4.9,2024-11-25,5.3,expert
+VE-2003,Kevin,Nguyen,k.nguyen@company.com,555-3003,Product,Product Manager,2020-02-14,FULL_TIME,118000.00,YES,VE-3003,San Diego,USA,ON_SITE,GOLD,4.4,2024-12-12,4.8,intermediate
+VE-2004,Michelle,Thompson,m.thompson@company.com,555-3004,Technology,Cloud Infrastructure Engineer,2021-11-30,FULL_TIME,128000.00,YES,VE-3001,Phoenix,USA,REMOTE,SILVER,4.6,2024-12-08,3.1,senior
+VE-2005,Ryan,Jackson,r.jackson@company.com,555-3005,Client Services,Head of Customer Support,2019-04-18,FULL_TIME,102000.00,YES,VE-3004,Dallas,USA,HYBRID,GOLD,4.8,2024-11-30,5.6,senior
+VE-2006,Nicole,White,n.white@company.com,555-3006,Technology,Associate Software Developer,2024-01-15,FULL_TIME,82000.00,NO,VE-3001,San Jose,USA,ON_SITE,BRONZE,4.0,2024-12-22,0.9,entry
+VE-2007,Brandon,Harris,b.harris@company.com,555-3007,Operations,Operations Analyst,2022-06-20,FULL_TIME,88000.00,YES,VE-3005,Houston,USA,HYBRID,SILVER,4.3,2024-12-05,2.5,intermediate

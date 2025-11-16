@@ -1,0 +1,8 @@
+product_id,product_name,category,subcategory,manufacturer,sku,barcode,unit_price,cost_price,stock_quantity,reorder_level,warehouse_location,weight_kg,dimensions_cm,is_active,date_added
+PROD-5001,Industrial Widget,Electronics,Components,WidgetCo,WGT-IND-001,1234567890123,45.99,28.50,500,100,WH-A-15,2.5,15x10x8,true,2024-01-15
+PROD-5002,Smart Sensor,Electronics,Sensors,SensorTech,SNS-SMT-002,2345678901234,129.99,75.00,250,50,WH-B-22,0.8,8x6x4,true,2024-02-20
+PROD-5003,Automation Module,Industrial,Automation,AutoSys,AUT-MOD-003,3456789012345,299.99,180.00,150,30,WH-C-08,5.2,25x20x15,true,2024-03-12
+PROD-5004,Control Panel,Industrial,Controls,PanelPro,CTL-PNL-004,4567890123456,89.99,52.00,400,80,WH-A-33,3.1,20x15x10,true,2024-01-28
+PROD-5005,Safety Switch,Electrical,Safety,SafeGuard,SFT-SWT-005,5678901234567,24.99,12.50,1000,200,WH-D-45,0.3,10x8x5,true,2024-04-05
+PROD-5006,LED Display,Electronics,Displays,DisplayTech,LED-DSP-006,6789012345678,199.99,120.00,180,40,WH-B-17,1.5,30x20x5,true,2024-05-18
+PROD-5007,Power Supply,Electrical,Power,PowerMax,PWR-SUP-007,7890123456789,79.99,45.00,350,70,WH-C-29,4.0,18x12x10,true,2024-02-14

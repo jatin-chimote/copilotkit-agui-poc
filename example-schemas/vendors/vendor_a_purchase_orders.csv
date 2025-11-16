@@ -1,0 +1,6 @@
+PO_Number,OrderDate,ClientID,ClientCompanyName,ItemCode,ItemDescription,OrderQty,PricePerUnit,OrderTotal,OrderStatus,DeliveryAddress,PaymentType,OrderPriority,SalesRep
+A-PO-5001,2025-01-20,CLI-9001,Mega Manufacturing,ITM-7701,Heavy Duty Widget,150,42.50,6375.00,CONFIRMED,500 Industrial Way Seattle WA 98101,CREDIT,high,SR-201
+A-PO-5002,2025-01-21,CLI-9002,TechStart Solutions,ITM-7702,Premium Sensor Array,80,135.00,10800.00,PENDING,1200 Startup Ln Austin TX 78701,NET30,medium,SR-202
+A-PO-5003,2025-01-22,CLI-9003,BuildRight Construction,ITM-7703,Advanced Control Unit,40,285.00,11400.00,PROCESSING,750 Builder St Denver CO 80201,WIRE,high,SR-203
+A-PO-5004,2025-01-23,CLI-9004,SmartHome Inc,ITM-7704,Touch Control Interface,120,92.50,11100.00,SHIPPED,300 Modern Ave Portland OR 97201,CREDIT,low,SR-204
+A-PO-5005,2025-01-24,CLI-9005,Factory Direct,ITM-7705,Industrial Safety Component,300,22.75,6825.00,DELIVERED,900 Factory Rd Milwaukee WI 53201,PO,medium,SR-205

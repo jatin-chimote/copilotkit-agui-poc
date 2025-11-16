@@ -1,0 +1,8 @@
+ItemID,ItemName,MainCategory,SubCategory,Brand,StockKeepingUnit,EAN,RetailPrice,WholesaleCost,AvailableStock,MinimumStock,StorageLocation,WeightInKG,SizeCM,ActiveStatus,DateCreated,Supplier,LeadTimeDays
+VC-8001,Professional Widget Pro,Electronics,Industrial Components,WidgetMaster,WM-PRO-8001,9876543210123,48.99,30.00,450,90,Storage-Zone-A12,2.8,16x11x9,Y,2024-06-10,WidgetCo,14
+VC-8002,Ultra Sensor V2,Electronics,Measurement Devices,UltraSense,US-V2-8002,9876543210234,139.99,82.00,220,45,Storage-Zone-B18,0.9,9x7x5,Y,2024-07-22,SensorTech,21
+VC-8003,Pro Automation Kit,Automation,Control Systems,AutoPro,AP-KIT-8003,9876543210345,319.99,195.00,125,25,Storage-Zone-C05,5.8,28x22x18,Y,2024-08-15,AutoSys,28
+VC-8004,SmartControl Dashboard,Controls,User Interfaces,SmartCtrl,SC-DASH-8004,9876543210456,94.99,55.00,380,75,Storage-Zone-A28,3.4,22x16x11,Y,2024-05-30,PanelPro,10
+VC-8005,Premium Safety Toggle,Safety Equipment,Switches,SafePro,SP-TOGG-8005,9876543210567,27.99,14.00,950,190,Storage-Zone-D40,0.4,11x9x6,Y,2024-09-18,SafeGuard,7
+VC-8006,HD LED Screen,Displays,Digital Signage,ScreenTech,ST-LED-8006,9876543210678,219.99,135.00,160,35,Storage-Zone-B12,1.7,32x22x6,Y,2024-10-25,DisplayTech,30
+VC-8007,Industrial Power Unit,Power Systems,AC/DC Supplies,PowerPro,PP-UNIT-8007,9876543210789,84.99,48.00,320,65,Storage-Zone-C24,4.5,20x14x12,Y,2024-07-08,PowerMax,18

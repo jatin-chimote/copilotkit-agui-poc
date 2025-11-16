@@ -1,0 +1,8 @@
+employee_id,first_name,last_name,email,phone,department,job_title,hire_date,employment_type,salary,bonus_eligible,manager_id,office_location,country,work_schedule,benefits_tier,performance_rating,last_review_date
+EMP-1001,Alice,Williams,alice.williams@company.com,+1-555-1001,Engineering,Senior Software Engineer,2020-03-15,full_time,125000.00,true,EMP-2001,New York,United States,standard,premium,4.5,2024-12-15
+EMP-1002,Robert,Martinez,robert.martinez@company.com,+1-555-1002,Sales,Account Executive,2021-06-01,full_time,95000.00,true,EMP-2002,San Francisco,United States,standard,standard,4.2,2024-11-20
+EMP-1003,Emily,Chen,emily.chen@company.com,+1-555-1003,Marketing,Marketing Manager,2019-09-10,full_time,110000.00,true,EMP-2003,Chicago,United States,standard,premium,4.8,2024-12-10
+EMP-1004,James,Anderson,james.anderson@company.com,+1-555-1004,Engineering,DevOps Engineer,2022-01-20,full_time,115000.00,true,EMP-2001,Austin,United States,remote,standard,4.3,2024-12-05
+EMP-1005,Maria,Garcia,maria.garcia@company.com,+1-555-1005,Customer Success,Customer Success Lead,2020-11-12,full_time,88000.00,true,EMP-2004,Boston,United States,hybrid,standard,4.6,2024-11-28
+EMP-1006,David,Kim,david.kim@company.com,+1-555-1006,Engineering,Junior Developer,2023-07-01,full_time,75000.00,false,EMP-2001,New York,United States,standard,basic,3.9,2024-12-20
+EMP-1007,Sarah,Patel,sarah.patel@company.com,+1-555-1007,Finance,Financial Analyst,2021-04-15,full_time,92000.00,true,EMP-2005,Seattle,United States,hybrid,standard,4.4,2024-12-01
