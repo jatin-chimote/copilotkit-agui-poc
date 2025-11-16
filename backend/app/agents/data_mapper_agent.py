@@ -46,7 +46,7 @@ class DataMapperAgent:
 
         return workflow.compile()
 
-    def _analyze_schemas(self, state: MappingState) -> MappingState:
+    def _analyze_schemas(self, state: MappingState) -> Dict[str, Any]:
         """Analyze source and destination schemas."""
         prompt = ChatPromptTemplate.from_messages([
             ("system", """You are a data mapping expert. Analyze the source and destination schemas
@@ -68,10 +68,9 @@ class DataMapperAgent:
             )
         )
 
-        state["agent_response"] = response.content
-        return state
+        return {"agent_response": response.content}
 
-    def _generate_mapping(self, state: MappingState) -> MappingState:
+    def _generate_mapping(self, state: MappingState) -> Dict[str, Any]:
         """Generate column mappings using AI."""
         prompt = ChatPromptTemplate.from_messages([
             ("system", """You are a data mapping expert. Generate intelligent column mappings
@@ -117,22 +116,26 @@ class DataMapperAgent:
         try:
             # Parse the JSON response
             mapping_data = json.loads(response.content)
-            state["current_mapping"] = mapping_data.get("mappings", {})
-            state["confidence_score"] = mapping_data.get("confidence", 0.0)
-            state["agent_response"] = mapping_data.get("reasoning", "")
+            agent_response = mapping_data.get("reasoning", "")
 
             if mapping_data.get("warnings"):
-                state["agent_response"] += "\n\nWarnings:\n" + "\n".join(
+                agent_response += "\n\nWarnings:\n" + "\n".join(
                     f"- {w}" for w in mapping_data["warnings"]
                 )
+
+            return {
+                "current_mapping": mapping_data.get("mappings", {}),
+                "confidence_score": mapping_data.get("confidence", 0.0),
+                "agent_response": agent_response
+            }
         except json.JSONDecodeError:
             # Fallback if JSON parsing fails
-            state["agent_response"] = response.content
-            state["confidence_score"] = 0.5
+            return {
+                "agent_response": response.content,
+                "confidence_score": 0.5
+            }
 
-        return state
-
-    def _validate_mapping(self, state: MappingState) -> MappingState:
+    def _validate_mapping(self, state: MappingState) -> Dict[str, Any]:
         """Validate the generated mappings."""
         dest_columns = set(state["destination_schema"].keys())
         mapped_columns = set(state["current_mapping"].keys())
@@ -140,10 +143,16 @@ class DataMapperAgent:
         # Check for unmapped required columns
         unmapped = dest_columns - mapped_columns
         if unmapped:
-            state["agent_response"] += f"\n\nNote: The following destination columns are unmapped: {', '.join(unmapped)}"
-            state["confidence_score"] *= 0.9  # Reduce confidence
+            updated_response = state["agent_response"] + f"\n\nNote: The following destination columns are unmapped: {', '.join(unmapped)}"
+            updated_confidence = state["confidence_score"] * 0.9  # Reduce confidence
 
-        return state
+            return {
+                "agent_response": updated_response,
+                "confidence_score": updated_confidence
+            }
+
+        # No changes needed if all columns are mapped
+        return {}
 
     def map_schemas(
         self,
