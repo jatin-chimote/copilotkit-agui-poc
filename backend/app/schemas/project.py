@@ -21,7 +21,7 @@ class SubProjectBase(BaseModel):
     source_schema: Dict[str, Any]
 
 class SubProjectCreate(SubProjectBase):
-    project_id: int
+    pass
 
 class SubProjectUpdate(BaseModel):
     name: Optional[str] = None
