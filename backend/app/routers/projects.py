@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, UploadFile, File
 from sqlalchemy.orm import Session
 from typing import List
 from app.database import get_db
@@ -11,6 +11,7 @@ from app.schemas.project import (
     SubProjectCreate,
     SubProjectUpdate
 )
+from app.utils.file_parser import SchemaExtractor
 
 router = APIRouter(prefix="/projects", tags=["projects"])
 
@@ -62,6 +63,19 @@ def delete_project(project_id: int, db: Session = Depends(get_db)):
     db.delete(db_project)
     db.commit()
     return {"message": "Project deleted successfully"}
+
+@router.post("/upload-schema")
+async def upload_destination_schema(file: UploadFile = File(...)):
+    """
+    Upload a file (CSV, Excel, JSON) and extract destination schema.
+    Returns the parsed schema for review before creating a project.
+    """
+    schema = await SchemaExtractor.extract_schema_from_file(file)
+    return {
+        "filename": file.filename,
+        "schema": schema,
+        "message": "Schema extracted successfully. Review and create project."
+    }
 
 # SubProject CRUD
 @router.post("/{project_id}/subprojects", response_model=SubProjectSchema)
@@ -116,3 +130,21 @@ def delete_subproject(subproject_id: int, db: Session = Depends(get_db)):
     db.delete(db_subproject)
     db.commit()
     return {"message": "SubProject deleted successfully"}
+
+@router.post("/{project_id}/subprojects/upload-schema")
+async def upload_source_schema(project_id: int, file: UploadFile = File(...), db: Session = Depends(get_db)):
+    """
+    Upload a file (CSV, Excel, JSON) and extract source schema for a subproject.
+    Returns the parsed schema for review before creating a subproject.
+    """
+    db_project = db.query(Project).filter(Project.id == project_id).first()
+    if not db_project:
+        raise HTTPException(status_code=404, detail="Project not found")
+
+    schema = await SchemaExtractor.extract_schema_from_file(file)
+    return {
+        "filename": file.filename,
+        "schema": schema,
+        "project_id": project_id,
+        "message": "Schema extracted successfully. Review and create subproject."
+    }

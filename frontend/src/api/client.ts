@@ -15,6 +15,10 @@ export const projectsApi = {
   create: (data: ProjectCreate) => api.post<Project>('/projects/', data),
   update: (id: number, data: Partial<ProjectCreate>) => api.put<Project>(`/projects/${id}`, data),
   delete: (id: number) => api.delete(`/projects/${id}`),
+  uploadDestinationSchema: (formData: FormData) =>
+    api.post('/projects/upload-schema', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    }),
 };
 
 // SubProjects
@@ -26,6 +30,10 @@ export const subProjectsApi = {
   update: (id: number, data: Partial<SubProjectCreate>) =>
     api.put<SubProject>(`/projects/subprojects/${id}`, data),
   delete: (id: number) => api.delete(`/projects/subprojects/${id}`),
+  uploadSourceSchema: (projectId: number, formData: FormData) =>
+    api.post(`/projects/${projectId}/subprojects/upload-schema`, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    }),
 };
 
 // Agent

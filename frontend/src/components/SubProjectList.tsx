@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { subProjectsApi } from '../api/client';
 import { useStore } from '../store/useStore';
-import { Plus, FileText } from 'lucide-react';
+import { Plus, FileText, Upload } from 'lucide-react';
 import type { SubProjectCreate } from '../types';
 
 export const SubProjectList: React.FC = () => {
@@ -106,9 +106,37 @@ interface CreateSubProjectModalProps {
 }
 
 const CreateSubProjectModal: React.FC<CreateSubProjectModalProps> = ({ onClose, onSubmit }) => {
+  const { selectedProject } = useStore();
   const [name, setName] = useState('');
   const [vendorName, setVendorName] = useState('');
-  const [schema, setSchema] = useState('{\n  "vendor_col1": "string",\n  "vendor_col2": "number"\n}');
+  const [schema, setSchema] = useState('');
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const [isUploading, setIsUploading] = useState(false);
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file || !selectedProject) return;
+
+    setUploadedFile(file);
+    setIsUploading(true);
+
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const response = await subProjectsApi.uploadSourceSchema(selectedProject.id, formData);
+      const extractedSchema = response.data.schema;
+
+      // Convert extracted schema to JSON string for display/editing
+      setSchema(JSON.stringify(extractedSchema, null, 2));
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      alert('Error parsing file. Please check the format and try again.');
+      setUploadedFile(null);
+    } finally {
+      setIsUploading(false);
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -146,15 +174,43 @@ const CreateSubProjectModal: React.FC<CreateSubProjectModalProps> = ({ onClose, 
             />
           </div>
           <div className="form-group">
-            <label>Source Schema (JSON) *</label>
+            <label>Source Schema *</label>
+            <div style={{ marginBottom: '10px' }}>
+              <label
+                htmlFor="source-schema-file-upload"
+                className="btn btn-secondary"
+                style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center' }}
+              >
+                <Upload size={16} style={{ marginRight: '5px' }} />
+                {isUploading ? 'Uploading...' : 'Upload File'}
+              </label>
+              <input
+                id="source-schema-file-upload"
+                type="file"
+                accept=".csv,.xlsx,.xls,.json"
+                onChange={handleFileUpload}
+                style={{ display: 'none' }}
+                disabled={isUploading}
+              />
+              {uploadedFile && (
+                <span style={{ marginLeft: '10px', fontSize: '13px', color: '#666' }}>
+                  <FileText size={14} style={{ display: 'inline', marginRight: '5px' }} />
+                  {uploadedFile.name}
+                </span>
+              )}
+            </div>
+            <small style={{ color: '#666', display: 'block', marginBottom: '8px' }}>
+              Upload CSV, Excel, or JSON file with vendor's source schema
+            </small>
             <textarea
               value={schema}
               onChange={(e) => setSchema(e.target.value)}
               rows={10}
+              placeholder="Upload a file or paste JSON schema here..."
               required
             />
             <small style={{ color: '#666' }}>
-              Paste the vendor's schema structure
+              Paste the vendor's schema structure or upload a file
             </small>
           </div>
           <div className="modal-actions">

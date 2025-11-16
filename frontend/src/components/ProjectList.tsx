@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { projectsApi } from '../api/client';
 import { useStore } from '../store/useStore';
-import { Plus, FolderOpen } from 'lucide-react';
+import { Plus, FolderOpen, Upload, FileText } from 'lucide-react';
 import type { ProjectCreate } from '../types';
 
 export const ProjectList: React.FC = () => {
@@ -86,7 +86,34 @@ interface CreateProjectModalProps {
 const CreateProjectModal: React.FC<CreateProjectModalProps> = ({ onClose, onSubmit }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [schema, setSchema] = useState('{\n  "column1": "string",\n  "column2": "number"\n}');
+  const [schema, setSchema] = useState('');
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const [isUploading, setIsUploading] = useState(false);
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploadedFile(file);
+    setIsUploading(true);
+
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const response = await projectsApi.uploadDestinationSchema(formData);
+      const extractedSchema = response.data.schema;
+
+      // Convert extracted schema to JSON string for display/editing
+      setSchema(JSON.stringify(extractedSchema, null, 2));
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      alert('Error parsing file. Please check the format and try again.');
+      setUploadedFile(null);
+    } finally {
+      setIsUploading(false);
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -123,11 +150,39 @@ const CreateProjectModal: React.FC<CreateProjectModalProps> = ({ onClose, onSubm
             />
           </div>
           <div className="form-group">
-            <label>Destination Schema (JSON) *</label>
+            <label>Destination Schema *</label>
+            <div style={{ marginBottom: '10px' }}>
+              <label
+                htmlFor="schema-file-upload"
+                className="btn btn-secondary"
+                style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center' }}
+              >
+                <Upload size={16} style={{ marginRight: '5px' }} />
+                {isUploading ? 'Uploading...' : 'Upload File'}
+              </label>
+              <input
+                id="schema-file-upload"
+                type="file"
+                accept=".csv,.xlsx,.xls,.json"
+                onChange={handleFileUpload}
+                style={{ display: 'none' }}
+                disabled={isUploading}
+              />
+              {uploadedFile && (
+                <span style={{ marginLeft: '10px', fontSize: '13px', color: '#666' }}>
+                  <FileText size={14} style={{ display: 'inline', marginRight: '5px' }} />
+                  {uploadedFile.name}
+                </span>
+              )}
+            </div>
+            <small style={{ color: '#666', display: 'block', marginBottom: '8px' }}>
+              Upload CSV, Excel, or JSON file with your destination schema
+            </small>
             <textarea
               value={schema}
               onChange={(e) => setSchema(e.target.value)}
               rows={10}
+              placeholder="Upload a file or paste JSON schema here..."
               required
             />
             <small style={{ color: '#666' }}>
